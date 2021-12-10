@@ -109,15 +109,4 @@ const styles = StyleSheet.create({
     height: 130,
     elevation: 10,
   },
-  selectedImageStyle: {
-    height: windowWidth/2.25,
-    width: windowWidth/2.25,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-  },
-  cellItemTextStyle: {
-    fontWeight: '500',
-    fontSize: 10,
-    padding: 3
-  },
 });

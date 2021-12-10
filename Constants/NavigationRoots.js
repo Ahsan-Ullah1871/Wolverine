@@ -34,4 +34,6 @@ module.exports  = {
   InviteFriend: 'InviteFriend',
   Notifications:'Notifications' ,
   Schedule:'Schedule',
+  MyCart: 'MyCart',
+  Shipment: 'Shipment'
 }

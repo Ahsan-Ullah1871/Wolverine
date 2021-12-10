@@ -15,5 +15,5 @@ module.exports = {
     { 'name': 'Thu', 'id': 5 },
     { 'name': 'Fri', 'id': 6 },
     { 'name': 'Sat', 'id': 7 }],
-  customerMenuArray:['My Orders','Terms & Conditions', 'Privacy Policy', 'Invite Friend','Rate the app' , 'Logout'],
+  customerMenuArray:['My Orders','My Cart','Terms & Conditions', 'Privacy Policy', 'Invite Friend','Rate the app' , 'Logout'],
 }

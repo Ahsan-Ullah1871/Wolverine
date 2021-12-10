@@ -54,6 +54,7 @@ export default class MyOrders extends Component {
       path = `${path}&account_id=${appConstant.accountID}`;
     }
     const responseJson = await networkService.networkCall(path, 'get','',appConstant.bToken,appConstant.authKey)
+    this.setState({isVisible: false})
     if (responseJson['status'] == true) {
       let pData = responseJson['data']['orders'];
       if (pData.length != 0) {

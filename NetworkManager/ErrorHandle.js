@@ -10,6 +10,7 @@ export default class ErrorHandler {
           case 401: return 'Unauthorized'
           case 402: return 'Technical issue'
           case 753: return 'Action not allowed'
+          case 480: return  480
           default: return message;
           }
   }

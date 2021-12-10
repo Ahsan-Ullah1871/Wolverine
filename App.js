@@ -78,12 +78,9 @@ export default class App extends Component {
       console.log('into -- = >', into)
       appConstant.termCondition = into['terms_url'] || 'https://community.tradly.app';
       appConstant.privacyURL = into['privacy_policy_url'] || 'https://community.tradly.app'
-      appConstant.appHomeTitle = into['app_title_home'] || 'ClassBubs';
+      appConstant.appHomeTitle = into['app_title_home'] || 'Tradly';
       appConstant.appVersion = Platform.OS === 'ios' ? into['app_ios_version'] : into['app_android_version'];
       this.state.stripePublishKey = into['stripe_api_publishable_key'] || '';
-      // colors.AppTheme = into['app_color_primary'] || colors.AppTheme;
-      // colors.GradientBottom = into['app_color_primary'] || colors.AppTheme;
-      // colors.GradientTop = into['app_color_secondary'] || colors.GradientTop;
       this.getCurrencyApi()
       this.setState({ reload: true, isVisible: false })
     }
@@ -94,6 +91,8 @@ export default class App extends Component {
       let ccData = responseJson['data']['currencies']
       for (let obj of ccData) {
         if (obj['default'] == true) {
+          console.log('defaultCurrency , obj', obj)
+          appConstant.defaultCurrencyCode = obj['code'];
           appConstant.defaultCurrency = obj['format'];
         }
       }

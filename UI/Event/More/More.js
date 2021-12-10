@@ -176,16 +176,16 @@ export default class More extends Component {
     let  mArray = this.state.segmentIndex == 1 ? constantArrays.menuArray : constantArrays.customerMenuArray;
     if (!appConstant.loggedIn) {
       mArray = mArray.slice(0,-1)
-     }
-    if (index == 1) {
+     } 
+    if (index == 2) {
       Linking.openURL(appConstant.termCondition);
     }
-    else if (index == 2) {
+    else if (index == 3) {
       Linking.openURL(appConstant.privacyURL);
     }
-    else if (index == 3) {
+    else if (index == 4) {
       this.props.navigation.navigate(NavigationRoots.InviteFriend);
-    } else if (index == 4) {
+    } else if (index == 5) {
       this.rateAppBtnAction()
     } else {
       if (appConstant.loggedIn) {
@@ -193,6 +193,8 @@ export default class More extends Component {
           this.logoutBtnAction()
         } else if (index == 0) {
           this.props.navigation.navigate(NavigationRoots.MyOrders);
+        } else if (index == 1) {
+          this.props.navigation.navigate(NavigationRoots.MyCart);
         }
       } else {
         this.props.navigation.navigate(NavigationRoots.SignIn)

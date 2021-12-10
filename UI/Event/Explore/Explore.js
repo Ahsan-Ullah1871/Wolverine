@@ -87,7 +87,7 @@ export default class Explore extends Component {
   initApi() {
     if (this.state.datesArray.length != 0){
       this.state.selectedDate = changeDateFormat(this.state.datesArray[0], 'YYYY-MM-DD');
-      let strtD = `&start_at=${this.state.selectedDate}T00:00:00Z`;
+      let strtD = ''//`&start_at=${this.state.selectedDate}T00:00:00Z`;
       this.state.params = `${strtD}`;
     }
     this.callApi(this.state.params);
@@ -111,7 +111,6 @@ export default class Explore extends Component {
       let events = responseJson['data']['listings'];
       if (events.length != 0) {
         for(let objc of events){
-          console.log('objc =>', objc);
           this.state.eventsArray.push(objc);
         }
       }else {

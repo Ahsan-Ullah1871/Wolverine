@@ -45,6 +45,8 @@ import InviteFriend from '../UI/Event/More/InviteFriends';
 import appConstant from '../Constants/AppConstants';
 import Notifications from '../UI/Event/Notification/Notifications';
 import Schedules from '../UI/Event/EventDetail/Schedule';
+import MyCart from '../UI/Event/More/MyCart/MyCart';
+import Shipment from '../UI/Event/More/MyCart/Shipment';
 
 const Stack = createStackNavigator();
 
@@ -92,6 +94,8 @@ export default class App extends Component {
         <Stack.Screen name={NavigationRoots.InviteFriend} component={InviteFriend} />
         <Stack.Screen name={NavigationRoots.Notifications} component={Notifications} />
         <Stack.Screen name={NavigationRoots.Schedule} component={Schedules} />
+        <Stack.Screen name={NavigationRoots.MyCart} component={MyCart} />
+        <Stack.Screen name={NavigationRoots.Shipment} component={Shipment} />
         <Stack.Screen name={NavigationRoots.Filter} component={Filter} options={{
           title: '',
           ...TransitionPresets.ModalSlideFromBottomIOS,

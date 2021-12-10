@@ -78,7 +78,7 @@ export default class App extends Component {
       console.log('into -- = >', into)
       appConstant.termCondition = into['terms_url'] || 'https://community.tradly.app';
       appConstant.privacyURL = into['privacy_policy_url'] || 'https://community.tradly.app'
-      appConstant.appHomeTitle = into['app_title_home'] || 'ClassBubs';
+      appConstant.appHomeTitle = into['app_title_home'] || 'Kukku';
       appConstant.appVersion = Platform.OS === 'ios' ? into['app_ios_version'] : into['app_android_version'];
       this.state.stripePublishKey = into['stripe_api_publishable_key'] || '';
       // colors.AppTheme = into['app_color_primary'] || colors.AppTheme;

@@ -42,6 +42,7 @@ class NetworkManager {
         if(json["error"]['code'] == 401){
           return  this.refreshKeyCall(path,method,param,token,auth,currency)
         } else {
+          console.log('error => errror json ', json)
           console.log('error => errror json ', json['error']['errors'])
           let error = errorHandler.errorHandle(json['error']['code'],json['error']['message']);
           return error

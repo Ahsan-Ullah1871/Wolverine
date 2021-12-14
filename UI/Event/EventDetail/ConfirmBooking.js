@@ -54,14 +54,14 @@ export default class ConfirmBooking extends Component {
     }
   }
   componentDidMount() {
-    let {eventData,startTime,endTime,date} = this.props.route.params;
-    this.state.startTime = startTime;
-    this.state.endTime = endTime;
-    this.state.selectedDate = date;
+    // let {eventData,startTime,endTime,date} = this.props.route.params;
+    // this.state.startTime = startTime;
+    // this.state.endTime = endTime;
+    // this.state.selectedDate = date;
 
-    this.state.eventDetailData = eventData
-    this.state.listPrice = this.state.eventDetailData['offer_price']['amount'];
-    this.setState({updateUI: !this.state.updateUI})
+    // this.state.eventDetailData = eventData
+    // this.state.listPrice = this.state.eventDetailData['offer_price']['amount'];
+    // this.setState({updateUI: !this.state.updateUI})
     this.getPaymentMethodsApi();
     this.getphemeralKeyApi();
   }
@@ -90,21 +90,13 @@ export default class ConfirmBooking extends Component {
   }
   checkoutApiMethod = async () => {
     this.setState({ isVisible: true })
-    let {variantData} = this.props.route.params;
+    let {shipmentId} = this.props.route.params;
     var dict = {
       'payment_method_id': this.state.selectedPaymentId,
-      'quantity': this.state.countPrice,
-      'type': 'events',
-      'start_at':`${this.state.selectedDate} ${this.state.startTime}:00`,
-      'end_at':`${this.state.selectedDate} ${this.state.endTime}:00`
+      'shipping_method_id': shipmentId,
     }
-    if (variantData['id']) {
-      dict['variant_id'] = variantData['id'];
-    }
-    let id = this.state.eventDetailData['id']
-    let currency = this.state.eventDetailData['list_price']['currency'];
-    const responseJson = await networkService.networkCall(`${APPURL.URLPaths.listings}/${id}${APPURL.URLPaths.checkOut}`,
-    'POST',JSON.stringify({ order:dict}),appConstant.bToken,appConstant.authKey,currency);
+    const responseJson = await networkService.networkCall(`${APPURL.URLPaths.cart}/${APPURL.URLPaths.checkOut}`,
+    'POST',JSON.stringify({ order:dict}),appConstant.bToken,appConstant.authKey,appConstant.defaultCurrencyCode);
     if (responseJson['status'] == true) {
       let cData = responseJson['data'];
       console.log('cData', cData);
@@ -135,7 +127,13 @@ export default class ConfirmBooking extends Component {
   successAlert() {
     this.setState({isVisible: false })
     this.setState({ showCAlert: false})
-    this.props.navigation.navigate(NavigationRoots.MyOrders);
+    this.setState({isVisible: false })
+    this.navigateToOrder()
+  }
+  navigateToOrder() {
+    setTimeout(() => {
+      this.props.navigation.navigate(NavigationRoots.MyOrders);
+    }, 1000);
   }
   /*  Stripe Payment Gateway */
   initializePaymentSheet = async () => {
@@ -276,10 +274,9 @@ export default class ConfirmBooking extends Component {
     </View>)
   }
   renderTotalView = () => {
-    if (this.state.eventDetailData['title']) {
-    let currency = this.state.eventDetailData['list_price']['currency'];
+    const { grandTotal } = this.props.route.params;
     return (<View>
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+      {/* <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         <View style={{width: '60%',justifyContent: 'center', height: 40}}>
         <Text style={eventStyles.commonTxtStyle}>Number of Members</Text>
         </View>
@@ -294,16 +291,13 @@ export default class ConfirmBooking extends Component {
             <Text style={{color: colors.AppWhite, fontSize: 25}}>+</Text>
           </TouchableOpacity>      
         </View>
-      </View>
-      <View style={{ width: '100%', height: 0.5, marginTop: 10 ,backgroundColor: colors.BorderColor }} />
-      <View style={{flexDirection: 'row', justifyContent: 'space-between',alignItems: 'center',marginTop: 16}}>
+      </View> */}
+      <View style={{flexDirection: 'row', justifyContent: 'space-between',alignItems: 'center'}}>
         <Text style={eventStyles.commonTxtStyle}>Total</Text>
-        <Text style={eventStyles.commonTxtStyle}>{`${currency} ${this.state.listPrice}`}</Text>
+        <Text style={eventStyles.commonTxtStyle}>{`${grandTotal}`}</Text>
       </View>
     </View>) 
-    }else {
-      return <View />
-    }
+
   }
   renderBottomBtnView = () => {
     return (<View>
@@ -324,18 +318,17 @@ export default class ConfirmBooking extends Component {
         <View style={{ height: '100%', backgroundColor: colors.LightBlueColor,justifyContent: 'space-between' }}>
           <ScrollView nestedScrollEnable={true} scrollEnabled={true}>
             <View style={{ height: '100%', backgroundColor: colors.LightBlueColor }}>
-            <View style={styles.commonViewStyle}>
+            {/* <View style={styles.commonViewStyle}>
               {this.renderTimeAddressDetail()}
-            </View>
+            </View> */}
             {/* <View style={{height: 10}}/>
             <View style={styles.commonViewStyle}>
               {this.renderVariantView()}
             </View> */}
-            <View style={{height: 10}}/>
+            {/* <View style={{height: 10}}/> */}
             <View style={{padding:16}}>
               <Text style={eventStyles.commonTxtStyle}>Payment Method</Text>
             </View>
-            <View style={{height: 10}}/>
             {this.renderPaymentMethodsView()}
             <View style={styles.commonViewStyle}>
               {this.renderTotalView()}

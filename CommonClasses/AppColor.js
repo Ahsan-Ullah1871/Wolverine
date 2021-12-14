@@ -17,7 +17,8 @@ export default {
   GradientTop: '#2BDBC0',
   GradientBottom: '#13B58C',
   AppBlack:'rgba(1, 1, 1, 1)',
-
+  softGreen: '#DFFBF4',
+  softGray: '#606A7B',
 };
 
 //60e4ad client theme

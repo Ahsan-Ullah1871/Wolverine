@@ -35,5 +35,6 @@ module.exports  = {
   Notifications:'Notifications' ,
   Schedule:'Schedule',
   MyCart: 'MyCart',
-  Shipment: 'Shipment'
+  Shipment: 'Shipment',
+  AddAddress: 'AddAddress',
 }

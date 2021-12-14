@@ -240,6 +240,11 @@ module.exports = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  
+  bottomContainerViewStyle: {
+    padding: 16,
+    backgroundColor: colors.AppWhite,
+    borderWidth: 1,
+    borderColor: colors.LightUltraGray,
+  },
 });
 

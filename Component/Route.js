@@ -47,6 +47,7 @@ import Notifications from '../UI/Event/Notification/Notifications';
 import Schedules from '../UI/Event/EventDetail/Schedule';
 import MyCart from '../UI/Event/More/MyCart/MyCart';
 import Shipment from '../UI/Event/More/MyCart/Shipment';
+import AddAddress from '../UI/Event/More/MyCart/AddAddress'
 
 const Stack = createStackNavigator();
 
@@ -96,6 +97,10 @@ export default class App extends Component {
         <Stack.Screen name={NavigationRoots.Schedule} component={Schedules} />
         <Stack.Screen name={NavigationRoots.MyCart} component={MyCart} />
         <Stack.Screen name={NavigationRoots.Shipment} component={Shipment} />
+        <Stack.Screen name={NavigationRoots.AddAddress} component={AddAddress} options={{
+          title: '',
+          ...TransitionPresets.ModalSlideFromBottomIOS,
+        }} />
         <Stack.Screen name={NavigationRoots.Filter} component={Filter} options={{
           title: '',
           ...TransitionPresets.ModalSlideFromBottomIOS,

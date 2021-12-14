@@ -46,9 +46,9 @@ export default class MyCart extends Component {
     }
   }
   componentDidMount() {
-    // this.props.navigation.addListener('focus', () => {
+    this.props.navigation.addListener('focus', () => {
       this.callApi();
-    // })
+    })
   }
   callApi() {
     this.state.myCartArray = [];
@@ -64,7 +64,9 @@ export default class MyCart extends Component {
       let pData = responseJson['data']['cart_details'];
       if (responseJson['data']['cart']){
         let gDic = responseJson['data']['cart'];
-        this.state.grandTotal = gDic['grand_total']['formatted'];
+        if (gDic['grand_total']) {
+          this.state.grandTotal = gDic['grand_total']['formatted'];
+        }
       }
       if (pData.length != 0) {
         for(let objc of pData){
@@ -126,6 +128,7 @@ export default class MyCart extends Component {
   shipmenBtnAction() {
     this.props.navigation.navigate(NavigationRoots.Shipment,{
       accId: this.state.accountID,
+      grandTotal: this.state.grandTotal,
     });
   }
   /*  UI   */
@@ -218,14 +221,14 @@ export default class MyCart extends Component {
     )
   }
   renderBottomBtnView = () => {
-    
-    return (<View style={styles.commonViewStyle}>
+    if (this.state.myCartArray.length != 0) {
+    return (<View style={eventStyles.bottomContainerViewStyle}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <View style={styles.bottomBtnViewStyle} >
           <View style={{alignItems: 'center'}}>
-            <Text style={{ color: colors.Lightgray, fontWeight: '600' }}>You Pay</Text>
+            <Text style={{ color: colors.Lightgray, fontWeight: '600', fontSize: 14 }}>You Pay</Text>
             <View style={{height: 5}}/>
-            <Text style={{ color: colors.AppTheme, fontWeight: '600' }}>{this.state.grandTotal}</Text>
+            <Text style={{ color: colors.AppTheme, fontWeight: '600', fontSize: 16 }}>{this.state.grandTotal}</Text>
           </View>
         </View>
         <TouchableOpacity style={styles.bottomBtnViewStyle} onPress={() => this.shipmenBtnAction()}>
@@ -235,6 +238,9 @@ export default class MyCart extends Component {
         </TouchableOpacity>
       </View>
     </View>)
+    }else {
+      return <View />
+    }
   }
   render() {
     return (
@@ -315,12 +321,6 @@ const styles = StyleSheet.create({
      height: '40%', 
      width: '100%', 
      borderRadius: 10 ,
-  },
-  commonViewStyle: {
-    padding: 16,
-    backgroundColor: colors.AppWhite,
-    borderWidth: 1,
-    borderColor: colors.LightUltraGray,
   },
   clearViewStyle: {
     padding: 16,

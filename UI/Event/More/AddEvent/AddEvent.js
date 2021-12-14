@@ -1006,17 +1006,9 @@ export default class AddEvent extends Component {
           <View style={styles.imageSelectedStyle}>
             <TouchableOpacity onPress={() => this.imagePicker()}>
               <View>
-                <FastImage
-                  source={{ uri: photoPath }}
-                  style={styles.SelectedImageStyle}
-                  resizeMode={'cover'}
-                />
-                <TouchableOpacity
-                  style={styles.deleteViewStyle}
-                  onPress={() => this.deleteImageButtonAction(i)}>
-                  <Image resizeMode={'center'} style={{ height: 20, width: 20 }}
-                    source={cancelIcon}
-                  />
+                <FastImage source={{ uri: photoPath }} style={styles.SelectedImageStyle} resizeMode={'cover'} />
+                <TouchableOpacity style={styles.deleteViewStyle} onPress={() => this.deleteImageButtonAction(i)}>
+                  <Image resizeMode={'center'} style={{ height: 20, width: 20 }} source={cancelIcon}  />
                 </TouchableOpacity>
               </View>
             </TouchableOpacity>
@@ -1028,9 +1020,7 @@ export default class AddEvent extends Component {
             <View>
               <TouchableOpacity style={styles.dottedViewStyle} onPress={() => this.imagePicker()}>
                 <View style={{ justifyContent: 'center' }}>
-                  <Image source={cameraIcon}
-                    style={{ width: 30, height: 30, alignSelf: 'center' }}
-                  />
+                  <Image source={cameraIcon} style={{width: 30, height: 30, alignSelf: 'center' }}/>
                 </View>
               </TouchableOpacity>
             </View>,

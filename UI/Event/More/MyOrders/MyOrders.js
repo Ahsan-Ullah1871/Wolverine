@@ -54,7 +54,6 @@ export default class MyOrders extends Component {
       path = `${path}&account_id=${appConstant.accountID}`;
     }
     const responseJson = await networkService.networkCall(path, 'get','',appConstant.bToken,appConstant.authKey)
-    this.setState({isVisible: false})
     if (responseJson['status'] == true) {
       let pData = responseJson['data']['orders'];
       if (pData.length != 0) {
@@ -105,8 +104,6 @@ export default class MyOrders extends Component {
   }
   renderOrderLisCellItem= ({item, index}) => {
     let listD = item['order_details'][0]['listing'];
-    // let dateFr = changeDateFormat(listD['start_at']  * 1000, 'ddd, MMM D');
-    // time = getTimeFormat(listD['start_at']) + ` to ` +  getTimeFormat(listD['end_at']) 
     var photo = listD['images'] ? listD['images'] : [];
     let payment = item['payment_method'] ? item['payment_method']['name'] : ''
     return <TouchableOpacity style={styles.variantCellViewStyle} onPress={() => this.didSelect(item)}>
@@ -119,17 +116,11 @@ export default class MyOrders extends Component {
           <Text style={eventStyles.subTitleStyle} numberOfLines={2}>{listD['description']}</Text>
           <View style={{height: 5}} />
           <Text style={eventStyles.subTitleStyle} numberOfLines={1}>{payment}</Text>
-          {/* <View style={{flexDirection: 'row'}}>
-            <Text style={eventStyles.subTitleStyle}>{dateFr}</Text>
-            <View style={{height: 16, width: 1, backgroundColor: colors.BorderColor, marginLeft: 5, marginRight: 5}} />
-            <Image style={{ width: 15, height: 15, marginRight: 5 }} resizeMode='center' source={timeIcon} />
-            <Text style={eventStyles.subTitleStyle}>{time}</Text>
-          </View> */}
         </View>
       </View>
     </View>
-    <View style={{ alignContent: 'center', padding: 10}}>
-      <Text style={eventStyles.commonTxtStyle}>{item['list_total']['formatted']}</Text>
+    <View style={{ alignContent: 'center', paddingLeft: 10,flex:1}}>
+      <Text style={eventStyles.commonTxtStyle}>{item['grand_total']['formatted']}</Text>
     </View>
   </TouchableOpacity>
   }

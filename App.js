@@ -17,7 +17,7 @@ import APPURL from './Constants/URLConstants';
 import appConstant from './Constants/AppConstants';
 // import logoIcon from './assets/classbubslogo.png';
 // import androidLogoIcon from './assets/classbubslogo.jpg';
-import classbubsLogo from './assets/classbubsLogoTransparent.png'
+import logoIcon from './assets/logo.png'
 import * as Sentry from "@sentry/react-native";
 import {StripeProvider} from '@stripe/stripe-react-native';
 import Route from './Component/Route';
@@ -106,7 +106,7 @@ export default class App extends Component {
         <StatusBar backgroundColor={colors.AppTheme} barStyle="light-content"/>
         <View>
           {/* <Spinner visible={this.state.isVisible} textContent={''} textStyle={commonStyles.spinnerTextStyle} /> */}
-          <Image style={{ width: 180, height: 180, borderRadius: 0 }} source={Platform.OS === 'ios' ? classbubsLogo : classbubsLogo} />
+          <Image style={{ width: 180, height: 180, borderRadius: 0 }} source={Platform.OS === 'ios' ? logoIcon : logoIcon} />
         </View>
       </SafeAreaView>
     } else {

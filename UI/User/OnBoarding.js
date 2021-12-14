@@ -20,18 +20,19 @@ export default class OnBoardings extends Component {
     }
   }
   componentDidMount() {
-    var index = 0 ;
-    for (let obj of appConstant.intoScreen) {
-      index = index + 1
-      let dic = {
-        key: index,
-        title: obj['text'],
-        text: '',
-        image: {url:obj['image']},
+    var index = 0;
+    if (appConstant.intoScreen) {
+      for (let obj of appConstant.intoScreen) {
+        index = index + 1
+        let dic = {
+          key: index,
+          title: obj['text'],
+          text: '',
+          image: { url: obj['image'] },
+        }
+        this.state.slides.push(dic)
       }
-      this.state.slides.push(dic)
     }
-
   }
   /*  Buttons   */
   _onDone = () => {  

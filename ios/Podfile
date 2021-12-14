@@ -3,7 +3,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '11.0'
 
-target 'tradlyEvent' do
+def app_pods
   config = use_native_modules!
 
   use_react_native!(
@@ -17,10 +17,16 @@ target 'tradlyEvent' do
   pod 'react-native-location', :path => '../node_modules/react-native-location'
 
   pod 'jesster2k10-react-native-range-slider', :path => '../node_modules/@jesster2k10/react-native-range-slider'
+end
+  target 'tradlyEvent' do
+    app_pods
 
   target 'tradlyEventTests' do
     inherit! :complete
     # Pods for testing
+  end
+  target 'kukku' do
+    app_pods
   end
 
   # Enables Flipper.

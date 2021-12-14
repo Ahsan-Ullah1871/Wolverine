@@ -334,7 +334,7 @@ export default class ConfirmBooking extends Component {
               {this.renderTotalView()}
             </View>
             </View>
-            <SuccessView  title={'Your booking is successful'} show={this.state.showCAlert} onPress={() => this.successAlert() }/>
+            <SuccessView  title={'Your order is successfull. You will get confirmation from the business.'} show={this.state.showCAlert} onPress={() => this.successAlert() }/>
           </ScrollView>
           <View style={{padding: 16}}>
             <View style={{ height: 10 }} />

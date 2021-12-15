@@ -165,7 +165,7 @@ export default class SignIn extends Component {
         <ScrollView>
         <Spinner visible={this.state.isVisible} textContent={''} textStyle={commonStyle.spinnerTextStyle} />
           <View style={{height: 60}}/>
-          <Text style={commonStyle.titleStyle}>Welcome to ClassBubs</Text>
+          <Text style={commonStyle.titleStyle}>Welcome to {appConstant.appHomeTitle}</Text>
           <Text style={commonStyle.subTitleStyle}>Login to your account</Text>
           <View style={commonStyle.roundView}>
             <TextInput
